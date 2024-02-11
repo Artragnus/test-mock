@@ -23,7 +23,6 @@ class File {
   static isValid(csvString, options = DEFAULT_OPTION) {
     const [header, ...fileWithoutHeader] = csvString.split("\n");
     const isHeaderValid = header === options.fields.join(",");
-    console.log(fileWithoutHeader.length > 0);
     if (!isHeaderValid) {
       return {
         error: error.FILE_FIELDS_ERROR_MESSAGE,
@@ -45,17 +44,5 @@ class File {
     return { valid: true };
   }
 }
-
-(async () => {
-  {
-    const filePath = "./../mocks/emptyFile-invalid.csv";
-    const rejection = new Error(error.FILE_LENGTH_ERROR_MESSAGE);
-    const result = File.csvToJson(filePath);
-  }
-
-  {
-    const filePath = "";
-  }
-})();
 
 module.exports = File;
